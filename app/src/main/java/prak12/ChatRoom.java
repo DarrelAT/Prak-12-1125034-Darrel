@@ -7,7 +7,7 @@ public class ChatRoom {
     private String roomName;
     private List<User> members = new ArrayList<>();
 
-    public setChatRoom(String roomName) {
+    public ChatRoom(String roomName) {
         this.roomName = roomName;
     }
 
@@ -24,4 +24,16 @@ public class ChatRoom {
             }
         }
     }
+
+     public void sendPrivateMessage(User sender, String recipientName, String message) {
+        System.out.println("[ChatRoom " + roomName + "] (Private " + sender.getName() + " > " + recipientName + "): " + message);
+        for (User member : members) {
+            if (member.getName().equalsIgnoreCase(recipientName)) {
+                member.receiveMessage(sender, message);
+                return;
+            }
+        }
+        System.out.println("Penerima " + recipientName + " tidak ditemukan.");
+    }
+
 }

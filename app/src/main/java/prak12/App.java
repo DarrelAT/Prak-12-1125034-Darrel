@@ -2,13 +2,18 @@ package prak12;
 
 public class App {
     public static void main(String[] args) {
+        ChatRoom general = new ChatRoom("General");
+
         User budi = new User("Budi");
         User andi = new User("Andi");
         User cici = new User("Cici");
 
-        budi.addContact(andi);
-        budi.addContact(cici);
+        general.registerUser(budi);
+        general.registerUser(andi);
+        general.registerUser(cici);
 
-        budi.sendMessage(andi, "Halo Andi!");
+        budi.send("Halo semuanya!");
+
+        budi.sendPrivate("Cici", "Rahasia ya, jangan bilang siapa-siapa!");
     }
 }
