@@ -3,18 +3,21 @@ package prak12;
 public class App {
     public static void main(String[] args) {
         ChatRoom general = new ChatRoom("General");
+        ChatRoom sports = new ChatRoom("Sports");
 
-        general.addBadword("kasar");
-        general.addBadword("jelek");
-
-        User budi = new User("Budi");
+        User budi = new User("Budi"); 
         User andi = new User("Andi");
+        User cici = new User("Cici");
 
         general.registerUser(budi);
         general.registerUser(andi);
+        general.registerUser(cici);
 
-        budi.send("Halo andi");
-        budi.send("Jangan berkata kasar ya");
+        sports.registerUser(budi);
+        sports.registerUser(andi);
 
+        budi.sendToRoom(sports, "Halo teman-teman olahraga!");
+
+        general.removeUser(budi, cici);
     }
 }

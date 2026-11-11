@@ -7,14 +7,28 @@ public class ChatRoom {
     private String roomName;
     private List<User> members = new ArrayList<>();
     private List<String> badwords = new ArrayList<>();
+    private User admin; 
 
     public ChatRoom(String roomName) {
         this.roomName = roomName;
     }
 
     public void registerUser(User user) {
+        if (members.isEmpty()) {
+            admin = user; 
+        }
         members.add(user);
-        user.setChatRoom(this);
+        user.addChatRoom(this);
+    }
+
+    public void removeUser(User operator, User userToRemove) {
+        if (operator.equals(admin)) {
+            members.remove(userToRemove);
+            userToRemove.removeChatRoom(this);
+            System.out.println("[Admin " + admin.getName() + "] mengeluarkan " + userToRemove.getName() + " dari room " + roomName);
+        } else {
+            System.out.println(operator.getName() + " bukan admin dan tidak memiliki hak.");
+        }
     }
 
     public void addBadword(String word){
