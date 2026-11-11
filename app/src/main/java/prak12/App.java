@@ -4,16 +4,17 @@ public class App {
     public static void main(String[] args) {
         ChatRoom general = new ChatRoom("General");
 
+        general.addBadword("kasar");
+        general.addBadword("jelek");
+
         User budi = new User("Budi");
         User andi = new User("Andi");
-        User cici = new User("Cici");
 
         general.registerUser(budi);
         general.registerUser(andi);
-        general.registerUser(cici);
 
-        budi.send("Halo semuanya!");
+        budi.send("Halo andi");
+        budi.send("Jangan berkata kasar ya");
 
-        budi.sendPrivate("Cici", "Rahasia ya, jangan bilang siapa-siapa!");
     }
 }
